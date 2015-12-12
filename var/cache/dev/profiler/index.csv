@@ -60,3 +60,8 @@ da80e3,::1,GET,http://localhost/ibnkhaldoun/web/app_dev.php/admin/article/update
 9bcab5,::1,GET,http://localhost/ibnkhaldoun/web/app_dev.php/admin/com/validate/1,1449885757,e45a15,200
 e45a15,::1,GET,http://localhost/ibnkhaldoun/web/app_dev.php/admin/com/validate/1,1449885757,,404
 4ac084,::1,GET,http://localhost/ibnkhaldoun/web/app_dev.php/admin/com/validate/1,1449885777,,200
+21d13e,::1,GET,http://localhost/ibnkhaldoun/web/app_dev.php/admin,1449928382,,401
+447f05,::1,GET,http://localhost/ibnkhaldoun/web/app_dev.php/admin,1449928461,,401
+7970eb,::1,GET,http://localhost/ibnkhaldoun/web/app_dev.php/admin,1449928471,,200
+db3a8c,::1,GET,http://localhost/ibnkhaldoun/web/app_dev.php/,1449928481,,200
+8e89d7,::1,GET,http://localhost/ibnkhaldoun/web/app_dev.php/admin,1449928486,,200
