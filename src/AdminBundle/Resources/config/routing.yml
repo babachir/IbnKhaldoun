@@ -1,0 +1,34 @@
+admin_homepage:
+    path:     /admin
+    defaults: { _controller: AdminBundle:Index:index }
+admin_article:
+    path:     /admin/article
+    defaults: { _controller: AdminBundle:Article:index }
+admin_update_article:
+    path:     /admin/article/update/{id}
+    defaults: { _controller: AdminBundle:Article:update }
+    requirements:
+            id: \d*
+admin_create_article:
+    path:     /admin/article/create/{id}
+    defaults: { _controller: AdminBundle:Article:create }
+    requirements:
+            id: \d*
+admin_delete_article:
+    path:     /admin/article/delete/{id}
+    defaults: { _controller: AdminBundle:Article:delete }
+    requirements:
+            id: \d*
+admin_user:
+    path:     /admin/user
+    defaults: { _controller: AdminBundle:Utilisateur:index }
+admin_delete_com:
+    path:     /admin/com/delete/{id}
+    defaults: { _controller: AdminBundle:Utilisateur:deleteCom }
+    requirements:
+            id: \d*
+admin_validate_com:
+    path:     /admin/com/validate/{id}
+    defaults: { _controller: AdminBundle:Utilisateur:validateCom }
+    requirements:
+            id: \d*

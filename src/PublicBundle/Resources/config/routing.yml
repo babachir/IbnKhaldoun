@@ -1,0 +1,14 @@
+public_homepage:
+    path:     /
+    defaults: { _controller: PublicBundle:IbnkhaldounMap:index }
+public_map:
+    path:     /parcours
+    defaults: { _controller: PublicBundle:IbnkhaldounMap:map}
+public_article:
+    path:     /article
+    defaults: { _controller: PublicBundle:Article:index}
+public_readarticle:
+    path:     /article/read/{id}
+    defaults: { _controller: PublicBundle:Article:read}
+    requirements:
+        id: \d*
