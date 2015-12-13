@@ -131,18 +131,26 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_update_article')), array (  '_controller' => 'AdminBundle\\Controller\\ArticleController::updateAction',));
                 }
 
-                // admin_create_article
-                if ($pathinfo === '/admin/article/create') {
-                    return array (  '_controller' => 'AdminBundle\\Controller\\ArticleController::createAction',  '_route' => 'admin_create_article',);
-                }
+                if (0 === strpos($pathinfo, '/admin/article/create')) {
+                    // admin_create_article
+                    if (preg_match('#^/admin/article/create/(?P<idImage>\\d*)/(?P<idLocalisation>\\d*)$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_create_article')), array (  '_controller' => 'AdminBundle\\Controller\\ArticleController::createAction',));
+                    }
 
-                // admin_list_article
-                if ($pathinfo === '/admin/article/list') {
-                    return array (  '_controller' => 'AdminBundle\\Controller\\ArticleController::listAction',  '_route' => 'admin_list_article',);
+                    // admin_create_localisation
+                    if ($pathinfo === '/admin/article/createlocalisation') {
+                        return array (  '_controller' => 'AdminBundle\\Controller\\ArticleController::create_localisationAction',  '_route' => 'admin_create_localisation',);
+                    }
+
+                    // admin_create_img
+                    if (0 === strpos($pathinfo, '/admin/article/createimage') && preg_match('#^/admin/article/createimage/(?P<idLocalisation>\\d*)$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_create_img')), array (  '_controller' => 'AdminBundle\\Controller\\ArticleController::create_imgAction',));
+                    }
+
                 }
 
                 // admin_delete_article
-                if (0 === strpos($pathinfo, '/admin/article/delete') && preg_match('#^/admin/article/delete/(?P<id>\\d*)$#s', $pathinfo, $matches)) {
+                if (0 === strpos($pathinfo, '/admin/article/delete') && preg_match('#^/admin/article/delete/(?P<idLocalisation>[^/]++)$#s', $pathinfo, $matches)) {
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_delete_article')), array (  '_controller' => 'AdminBundle\\Controller\\ArticleController::deleteAction',));
                 }
 

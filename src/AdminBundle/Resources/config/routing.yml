@@ -13,15 +13,21 @@ admin_update_article:
     requirements:
             id: \d*
 admin_create_article:
-    path:     /admin/article/create
+    path:     /admin/article/create/{idImage}/{idLocalisation}
     defaults: { _controller: AdminBundle:Article:create }
     requirements:
-admin_list_article:
-    path:     /admin/article/list
-    defaults: { _controller: AdminBundle:Article:list }
+            idImage: \d*
+            idLocalisation: \d*
+admin_create_localisation:
+    path:     /admin/article/createlocalisation
+    defaults: { _controller: AdminBundle:Article:create_localisation }
+admin_create_img:
+    path:     /admin/article/createimage/{idLocalisation}
+    defaults: { _controller: AdminBundle:Article:create_img }
     requirements:
+            idLocalisation: \d*
 admin_delete_article:
-    path:     /admin/article/delete/{id}
+    path:     /admin/article/delete/{idLocalisation}
     defaults: { _controller: AdminBundle:Article:delete }
     requirements:
             id: \d*

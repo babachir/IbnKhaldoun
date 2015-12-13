@@ -2,8 +2,12 @@
 
 namespace AdminBundle\Controller;
 
+use Doctrine\DBAL\Types\FloatType;
 use EntityBundle\Entity\Administrateur;
+use EntityBundle\Entity;
+use EntityBundle\Entity\Image;
 use EntityBundle\Entity\Article;
+use Proxies\__CG__\EntityBundle\Entity\Localisation;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -19,10 +23,68 @@ class ArticleController extends Controller
         return $this->render('AdminBundle:Article:index.html.twig');
     }
 
-    public function createAction()
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function create_localisationAction(Request $request)
+    {
+        /*on charge le manager a fin de faire des entrés dans la base de données*/
+        $em = $this->getDoctrine()->getManager();
+        $localisation = new Localisation();
+        $form_localisation = $this->createFormBuilder($localisation)
+            ->add('nom',TextType::class)
+            ->add('longitude',TextType::class)
+            ->add('latitude',TextType::class)
+            ->add('add',Type\SubmitType::class)
+            ->getForm();
+
+        $form_localisation->handleRequest($request);
+
+        /*si le formulaire est valide */
+
+        if($form_localisation->isValid())
+        {
+            /**/
+            $em->persist($localisation);
+            $em->flush();
+            return $this->redirect($this->generateUrl("admin_create_img",array('idLocalisation' => $localisation->getId())));
+        }
+
+        //$article->setLocalisation($localisation1);
+        return $this->render('AdminBundle:Article:create_localisation.html.twig',array( 'form'=> $form_localisation->createView()));
+    }
+
+    public function create_imgAction($idLocalisation,Request $request)
+    {
+        /*on charge le manager a fin de faire des entrés dans la base de données*/
+        $em = $this->getDoctrine()->getManager();
+        $idLocalisation =
+        $image = new Image();
+        $form_img = $this->createFormBuilder($image)
+            ->add('urlImg',TextType::class)
+            ->add('add',Type\SubmitType::class)
+            ->getForm();
+
+        $form_img->handleRequest($request);
+
+        /*si le formulaire est valide */
+
+        if($form_img->isValid())
+        {
+            /**/
+            $em->persist($image);
+            $em->flush();
+            return $this->redirect($this->generateUrl("admin_create_article",array('idImage' => $image->getId()),array('idLocalisation' => $idLocalisation))));
+        }
+
+        //$article->setLocalisation($localisation1);
+        return $this->render('AdminBundle:Article:create_img.html.twig',array( 'form'=> $form_img->createView()));
+    }
+
+    public function createAction($idImage,$idLocalisation,Request $request)
     {
         return $this->render('AdminBundle:Article:create.html.twig');
     }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function updateAction($id)
     {
         return $this->render('AdminBundle:Article:update.html.twig');
