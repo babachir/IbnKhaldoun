@@ -65,6 +65,12 @@ class Commentaire
      */
     private $contenu;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="isvalid", type="string", length=1)
+     */
+    private $isvalid;
 
     /**
      * Get id
@@ -74,6 +80,30 @@ class Commentaire
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set isvalide
+     *
+     * @param string $isvalide
+     *
+     * @return Article
+     */
+    public function setIsvalide($isvalide)
+    {
+        $this->isvalid = $isvalide;
+
+        return $this;
+    }
+
+    /**
+     * Get isvalide
+     *
+     * @return string
+     */
+    public function getIsvalide()
+    {
+        return $this->isvalide;
     }
 
     /**
