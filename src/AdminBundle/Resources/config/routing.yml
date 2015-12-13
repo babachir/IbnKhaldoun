@@ -4,19 +4,30 @@ admin_homepage:
 admin_article:
     path:     /admin/article
     defaults: { _controller: AdminBundle:Article:index }
+admin_test:
+    path:     /admin/test
+    defaults: { _controller: AdminBundle:Article:test }
 admin_update_article:
     path:     /admin/article/update/{id}
     defaults: { _controller: AdminBundle:Article:update }
     requirements:
             id: \d*
 admin_create_article:
-    path:     /admin/article/create/{id}
+    path:     /admin/article/create
     defaults: { _controller: AdminBundle:Article:create }
     requirements:
-            id: \d*
+admin_list_article:
+    path:     /admin/article/list
+    defaults: { _controller: AdminBundle:Article:list }
+    requirements:
 admin_delete_article:
     path:     /admin/article/delete/{id}
     defaults: { _controller: AdminBundle:Article:delete }
+    requirements:
+            id: \d*
+admin_read_article:
+    path:     /admin/article/read/{id}
+    defaults: { _controller: AdminBundle:Article:read }
     requirements:
             id: \d*
 admin_user:

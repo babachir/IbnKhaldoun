@@ -53,7 +53,7 @@ class Administrateur
     /**
      * Get id
      *
-     * @return int
+     * @return string
      */
     public function getId()
     {

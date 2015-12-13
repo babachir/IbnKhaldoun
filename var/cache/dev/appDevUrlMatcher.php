@@ -115,25 +115,40 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'AdminBundle\\Controller\\IndexController::indexAction',  '_route' => 'admin_homepage',);
             }
 
-            if (0 === strpos($pathinfo, '/admin/article')) {
-                // admin_article
-                if ($pathinfo === '/admin/article') {
-                    return array (  '_controller' => 'AdminBundle\\Controller\\ArticleController::indexAction',  '_route' => 'admin_article',);
-                }
+            // admin_article
+            if ($pathinfo === '/admin/article') {
+                return array (  '_controller' => 'AdminBundle\\Controller\\ArticleController::indexAction',  '_route' => 'admin_article',);
+            }
 
+            // admin_test
+            if ($pathinfo === '/admin/test') {
+                return array (  '_controller' => 'AdminBundle\\Controller\\ArticleController::testAction',  '_route' => 'admin_test',);
+            }
+
+            if (0 === strpos($pathinfo, '/admin/article')) {
                 // admin_update_article
                 if (0 === strpos($pathinfo, '/admin/article/update') && preg_match('#^/admin/article/update/(?P<id>\\d*)$#s', $pathinfo, $matches)) {
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_update_article')), array (  '_controller' => 'AdminBundle\\Controller\\ArticleController::updateAction',));
                 }
 
                 // admin_create_article
-                if (0 === strpos($pathinfo, '/admin/article/create') && preg_match('#^/admin/article/create/(?P<id>\\d*)$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_create_article')), array (  '_controller' => 'AdminBundle\\Controller\\ArticleController::createAction',));
+                if ($pathinfo === '/admin/article/create') {
+                    return array (  '_controller' => 'AdminBundle\\Controller\\ArticleController::createAction',  '_route' => 'admin_create_article',);
+                }
+
+                // admin_list_article
+                if ($pathinfo === '/admin/article/list') {
+                    return array (  '_controller' => 'AdminBundle\\Controller\\ArticleController::listAction',  '_route' => 'admin_list_article',);
                 }
 
                 // admin_delete_article
                 if (0 === strpos($pathinfo, '/admin/article/delete') && preg_match('#^/admin/article/delete/(?P<id>\\d*)$#s', $pathinfo, $matches)) {
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_delete_article')), array (  '_controller' => 'AdminBundle\\Controller\\ArticleController::deleteAction',));
+                }
+
+                // admin_read_article
+                if (0 === strpos($pathinfo, '/admin/article/read') && preg_match('#^/admin/article/read/(?P<id>\\d*)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_read_article')), array (  '_controller' => 'AdminBundle\\Controller\\ArticleController::readAction',));
                 }
 
             }
