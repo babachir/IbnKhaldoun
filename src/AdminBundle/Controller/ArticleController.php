@@ -72,7 +72,7 @@ class ArticleController extends Controller
             /**/
             $em->persist($image);
             $em->flush();
-            return $this->redirect($this->generateUrl("admin_create_article",array('idImage' => $image->getId()),array('idLocalisation' => $idLocalisation))));
+            return $this->redirect($this->generateUrl("admin_create_article",array('idImage' => $image->getId()),array('idLocalisation' => $idLocalisation)));
         }
 
         //$article->setLocalisation($localisation1);
