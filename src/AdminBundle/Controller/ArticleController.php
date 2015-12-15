@@ -2,6 +2,7 @@
 
 namespace AdminBundle\Controller;
 
+use Doctrine\DBAL\Types\DateType;
 use Doctrine\DBAL\Types\FloatType;
 use EntityBundle\Entity\Administrateur;
 use EntityBundle\Entity;
@@ -12,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type;
 
 
@@ -56,7 +58,6 @@ class ArticleController extends Controller
     {
         /*on charge le manager a fin de faire des entrés dans la base de données*/
         $em = $this->getDoctrine()->getManager();
-        $idLocalisation =
         $image = new Image();
         $form_img = $this->createFormBuilder($image)
             ->add('urlImg',TextType::class)
@@ -72,7 +73,7 @@ class ArticleController extends Controller
             /**/
             $em->persist($image);
             $em->flush();
-            return $this->redirect($this->generateUrl("admin_create_article",array('idImage' => $image->getId()),array('idLocalisation' => $idLocalisation)));
+            return $this->redirect($this->generateUrl("admin_create_article",array('idImage' => $image->getId(),'idLocalisation' => $idLocalisation)));
         }
 
         //$article->setLocalisation($localisation1);
@@ -81,7 +82,42 @@ class ArticleController extends Controller
 
     public function createAction($idImage,$idLocalisation,Request $request)
     {
-        return $this->render('AdminBundle:Article:create.html.twig');
+        /*pour charcher le repository afin de lire la base de données*/
+        $Localisationrepository = $this->getDoctrine()->getManager()->getRepository('EntityBundle:Localisation');
+        /*on récupére la localisation 1 (si elle existe pas faut pas oublier de la crée)*/
+        $localisation1 = $Localisationrepository->find($idLocalisation);
+        /*on charge le manager a fin de faire des entrés dans la base de données*/
+        var_dump($localisation1);
+        $ImageRepository = $this->getDoctrine()->getManager()->getRepository('EntityBundle:Image');
+        $image1 = $ImageRepository->find($idImage);
+        var_dump($image1);
+
+        $em = $this->getDoctrine()->getManager();
+        $article = new Article();
+        $article->setLocalisation($localisation1);
+        $article->setImage($image1);
+        var_dump($article);//$article->
+        $form_article = $this->createFormBuilder($article)
+            ->add('titre',TextType::class)
+            ->add('description',TextType::class)
+            ->add('source',TextType::class)
+            ->add('dateDebut',DateTimeType::class)
+            ->add('dateFin',DateTimeType::class)
+            ->add('add',Type\SubmitType::class)
+            ->getForm();
+
+        $form_article->handleRequest($request);
+        /*si le formulaire est valide */
+
+        if($form_article->isValid())
+        {
+            /**/
+            $em->persist($article);
+            $em->flush();
+            // return $thirect($s->redithis->generateUrl("admin_create_article",array('idImage' => $image->getId()),array('idLocalisation' => $idLocalisation)));
+        }
+        var_dump($article);
+        return $this->render('AdminBundle:Article:create.html.twig',array( 'form'=> $form_article->createView()));
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
