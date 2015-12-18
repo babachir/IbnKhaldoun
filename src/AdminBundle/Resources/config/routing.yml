@@ -27,8 +27,8 @@ admin_create_img:
     requirements:
             idLocalisation: \d*
 admin_delete_article:
-    path:     /admin/article/delete/{idLocalisation}
-    defaults: { _controller: AdminBundle:Article:delete }
+    path:     /admin/article/delete/{id}
+    defaults: { _controller: AdminBundle:Article:delete}
     requirements:
             id: \d*
 admin_read_article:

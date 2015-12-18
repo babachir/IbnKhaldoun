@@ -119,6 +119,7 @@ class ArticleController extends Controller
         if($form_article->isValid())
         {
             /**/
+            $article->setIsDelete('0');
             $em->persist($article);
             $em->flush();
             // return $thirect($s->redithis->generateUrl("admin_create_article",array('idImage' => $image->getId()),array('idLocalisation' => $idLocalisation)));
@@ -130,13 +131,13 @@ class ArticleController extends Controller
     public function updateAction($id ,Request $request)
     {
         $ArticleRepository = $this->getDoctrine()->getManager()->getRepository('EntityBundle:Article');
-        $article = $ArticleRepository->find($id);
+        $articleOLD = $ArticleRepository->find($id);
 
 
         $em = $this->getDoctrine()->getManager();
-        $article = new Article();
 
-        $form_article = $this->createFormBuilder($article)
+
+        $form_article = $this->createFormBuilder($articleOLD)
             ->add('titre',TextType::class)
             ->add('description',TextType::class)
             ->add('source',TextType::class)
@@ -150,19 +151,25 @@ class ArticleController extends Controller
 
         if($form_article->isValid())
         {
-            var_dump($form_article->setData());
-            exit();
-            $em->persist($article);
+
+            $em->persist($articleOLD);
             $em->flush();
             // return $thirect($s->redithis->generateUrl("admin_create_article",array('idImage' => $image->getId()),array('idLocalisation' => $idLocalisation)));
         }
-        return $this->render('AdminBundle:Article:update.html.twig',array( ));
+       // $form_article->setData($articleOLD);
+        return $this->render('AdminBundle:Article:create.html.twig',array( 'form'=> $form_article->createView()));
     }
 
     public function deleteAction($id)
     {
-        /*ne doit pas avoir de vue */
-        return $this->render('AdminBundle:Article:update.html.twig');
+        $Articlerepository = $this->getDoctrine()->getManager()->getRepository('EntityBundle:Article');
+        /*on récupére la localisation 1 (si elle existe pas faut pas oublier de la crée)*/
+        $article = $Articlerepository->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $article->setIsDelete('1');
+        $em->persist($article);
+        $em->flush();
+        return $this->render('AdminBundle:Article:index.html.twig');
     }
     public function readAction($id)
     {

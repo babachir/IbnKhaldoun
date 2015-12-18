@@ -46,6 +46,13 @@ class Article
     /**
      * @var string
      *
+     * @ORM\Column(name="isDelete", type="string", length=1)
+     */
+    private $isDelete;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="description", type="text")
      */
     private $description;
@@ -105,6 +112,31 @@ class Article
     {
         return $this->titre;
     }
+
+    /**
+     * Set titre
+     *
+     * @param string $isDelete
+     *
+     * @return Article
+     */
+    public function setIsDelete($isDelete)
+    {
+        $this->isDelete = $isDelete;
+
+        return $this;
+    }
+
+    /**
+     * Get isDelete
+     *
+     * @return string
+     */
+    public function getIsDelete()
+    {
+        return $this->isDelete;
+    }
+
 
     /**
      * Set description
