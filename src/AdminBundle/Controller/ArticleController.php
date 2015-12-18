@@ -22,7 +22,16 @@ class ArticleController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('AdminBundle:Article:index.html.twig');
+
+        $news = $this->getDoctrine()
+            ->getRepository('EntityBundle:Article')
+            ->findAll();
+        if (!$news) {
+            throw $this->createNotFoundException('No news found');
+        }
+
+        $build['news'] = $news;
+        return $this->render('AdminBundle:Article:index.html.twig',$build);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -37,7 +46,6 @@ class ArticleController extends Controller
             ->add('latitude',TextType::class)
             ->add('add',Type\SubmitType::class)
             ->getForm();
-
         $form_localisation->handleRequest($request);
 
         /*si le formulaire est valide */
@@ -87,22 +95,21 @@ class ArticleController extends Controller
         /*on récupére la localisation 1 (si elle existe pas faut pas oublier de la crée)*/
         $localisation1 = $Localisationrepository->find($idLocalisation);
         /*on charge le manager a fin de faire des entrés dans la base de données*/
-        var_dump($localisation1);
+       // var_dump($localisation1);
         $ImageRepository = $this->getDoctrine()->getManager()->getRepository('EntityBundle:Image');
         $image1 = $ImageRepository->find($idImage);
-        var_dump($image1);
+
 
         $em = $this->getDoctrine()->getManager();
         $article = new Article();
         $article->setLocalisation($localisation1);
         $article->setImage($image1);
-        var_dump($article);//$article->
         $form_article = $this->createFormBuilder($article)
             ->add('titre',TextType::class)
             ->add('description',TextType::class)
             ->add('source',TextType::class)
-            ->add('dateDebut',DateTimeType::class)
-            ->add('dateFin',DateTimeType::class)
+            ->add('dateDebut',DateType::class)
+            ->add('dateFin',DateType::class)
             ->add('add',Type\SubmitType::class)
             ->getForm();
 
@@ -116,14 +123,40 @@ class ArticleController extends Controller
             $em->flush();
             // return $thirect($s->redithis->generateUrl("admin_create_article",array('idImage' => $image->getId()),array('idLocalisation' => $idLocalisation)));
         }
-        var_dump($article);
         return $this->render('AdminBundle:Article:create.html.twig',array( 'form'=> $form_article->createView()));
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function updateAction($id)
     {
-        return $this->render('AdminBundle:Article:update.html.twig');
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $testimonial = $em->getRepository('EntityBundle:Article')->find($id);
+        $form = $this->createForm(new Article(), $testimonial);
+        var_dump($form);
+        $request = $this->get('request');
+        var_dump($request);
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($request);
+
+            echo $testimonial->getName();
+
+            if ($form->isValid()) {
+                // perform some action, such as save the object to the database
+                //$testimonial = $form->getData();
+                echo 'testimonial: ';
+                echo var_dump($testimonial);
+                $em->persist($testimonial);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('admin_update_article'));
+            }
+        }
+
+        return $this->render('AdminBundle:Article:update.html.twig', array(
+            'form' => $form->createView()
+        ));
+
     }
     public function deleteAction($id)
     {
@@ -133,8 +166,22 @@ class ArticleController extends Controller
     public function readAction($id)
     {
 
-        return $this->render('AdminBundle:Article:read.html.twig');
+        $news = $this->getDoctrine()
+            ->getRepository('EntityBundle:Article')
+            ->find($id);
+        if (!$news) {
+            throw $this->createNotFoundException('No news found by id ' . $id);
+        }
+
+        $build['news_item'] = $news;
+        return $this->render('AdminBundle:Article:read.html.twig', $build);
+
+
+
     }
+
+
+
     public function listAction()
     {
         /*ne doit pas avoir de vue */

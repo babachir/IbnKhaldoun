@@ -1,4 +1,7 @@
 {% extends '::admin.html.twig'%}
 {% block body %}
-    hello read article from admin
+    {{ news_item.Titre }}
+    {{ news_item.description  }}
+    {{ news_item.source }}
+
 {% endblock body %}
