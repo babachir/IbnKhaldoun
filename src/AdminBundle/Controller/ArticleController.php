@@ -108,8 +108,8 @@ class ArticleController extends Controller
             ->add('titre',TextType::class)
             ->add('description',TextType::class)
             ->add('source',TextType::class)
-            ->add('dateDebut',DateType::class)
-            ->add('dateFin',DateType::class)
+            ->add('dateDebut',DateTimeType::class)
+            ->add('dateFin',DateTimeType::class)
             ->add('add',Type\SubmitType::class)
             ->getForm();
 
@@ -127,37 +127,38 @@ class ArticleController extends Controller
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public function updateAction($id)
+    public function updateAction($id ,Request $request)
     {
+        $ArticleRepository = $this->getDoctrine()->getManager()->getRepository('EntityBundle:Article');
+        $article = $ArticleRepository->find($id);
 
-        $em = $this->getDoctrine()->getEntityManager();
-        $testimonial = $em->getRepository('EntityBundle:Article')->find($id);
-        $form = $this->createForm(new Article(), $testimonial);
-        var_dump($form);
-        $request = $this->get('request');
-        var_dump($request);
-        if ($request->getMethod() == 'POST') {
-            $form->bindRequest($request);
 
-            echo $testimonial->getName();
+        $em = $this->getDoctrine()->getManager();
+        $article = new Article();
 
-            if ($form->isValid()) {
-                // perform some action, such as save the object to the database
-                //$testimonial = $form->getData();
-                echo 'testimonial: ';
-                echo var_dump($testimonial);
-                $em->persist($testimonial);
-                $em->flush();
+        $form_article = $this->createFormBuilder($article)
+            ->add('titre',TextType::class)
+            ->add('description',TextType::class)
+            ->add('source',TextType::class)
+            ->add('dateDebut',DateTimeType::class)
+            ->add('dateFin',DateTimeType::class)
+            ->add('add',Type\SubmitType::class)
+            ->getForm();
 
-                return $this->redirect($this->generateUrl('admin_update_article'));
-            }
+        $form_article->handleRequest($request);
+        /*si le formulaire est valide */
+
+        if($form_article->isValid())
+        {
+            var_dump($form_article->setData());
+            exit();
+            $em->persist($article);
+            $em->flush();
+            // return $thirect($s->redithis->generateUrl("admin_create_article",array('idImage' => $image->getId()),array('idLocalisation' => $idLocalisation)));
         }
-
-        return $this->render('AdminBundle:Article:update.html.twig', array(
-            'form' => $form->createView()
-        ));
-
+        return $this->render('AdminBundle:Article:update.html.twig',array( ));
     }
+
     public function deleteAction($id)
     {
         /*ne doit pas avoir de vue */
