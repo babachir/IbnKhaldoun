@@ -27,7 +27,7 @@ class ArticleController extends Controller
         $arrayArticle = array();
 
         foreach($datas as $data ) {
-            if ($data->getDateDebut()->format("Y")<=$year && $data->getDateFin()->format("Y")>=$year  ) {
+            if ($data->getDateDebut()->format("Y")==$year) {
                 $arrayArticle[] = array('id' => $data->getId(), 'titre' => $data->getTitre(), 'DateDebut' => $data->getDateDebut()->format("Y"),
                     'DateFin' => $data->getDateFin()->format("Y"), 'place' => $data->getLocalisation()->getNom(),
                     'longitude' => $data->getLocalisation()->getLongitude(), 'latitude' => $data->getLocalisation()->getLatitude());
