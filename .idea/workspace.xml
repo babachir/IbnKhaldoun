@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="70573158-b671-4cb3-a8d1-765d58de5e7d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AdminBundle/Controller/ArticleController.php" afterPath="$PROJECT_DIR$/src/AdminBundle/Controller/ArticleController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PublicBundle/Resources/views/IbnkhaldounMap/map.html.twig" afterPath="$PROJECT_DIR$/src/PublicBundle/Resources/views/IbnkhaldounMap/map.html.twig" />
     </list>
     <ignored path="ibnkhaldoun.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -76,47 +76,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="public.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/public.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.576923">
-              <caret line="7" column="95" selection-start-line="7" selection-start-column="95" selection-end-line="7" selection-end-column="95" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="map.html.twig" pinned="false" current-in-tab="false">
+      <file leaf-file-name="map.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/PublicBundle/Resources/views/IbnkhaldounMap/map.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.423077">
-              <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+            <state vertical-scroll-proportion="0.51724136">
+              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding>
-                <element signature="e#135#156#0#HTML" expanded="true" />
-                <element signature="e#246#281#0#HTML" expanded="true" />
+                <element signature="e#90#111#0#HTML" expanded="true" />
+                <element signature="e#201#236#0#HTML" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ArticleController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AdminBundle/Controller/ArticleController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.25965664">
-              <caret line="171" column="25" selection-start-line="171" selection-start-column="25" selection-end-line="171" selection-end-column="25" />
-              <folding>
-                <element signature="e#42#75#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AdminBundle/Resources/views/Article/index.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.3076923">
-              <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -158,9 +126,9 @@
         <option value="$PROJECT_DIR$/src/EntityBundle/Entity/Article.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/public.html.twig" />
         <option value="$PROJECT_DIR$/src/PublicBundle/Controller/ArticleController.php" />
-        <option value="$PROJECT_DIR$/src/PublicBundle/Resources/views/IbnkhaldounMap/map.html.twig" />
         <option value="$PROJECT_DIR$/src/AdminBundle/Resources/views/Article/create.html.twig" />
         <option value="$PROJECT_DIR$/src/AdminBundle/Controller/ArticleController.php" />
+        <option value="$PROJECT_DIR$/src/PublicBundle/Resources/views/IbnkhaldounMap/map.html.twig" />
       </list>
     </option>
   </component>
@@ -801,17 +769,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PublicBundle/Resources/views/IbnkhaldounMap/map.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.423077">
-          <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
-          <folding>
-            <element signature="e#135#156#0#HTML" expanded="true" />
-            <element signature="e#246#281#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AdminBundle/Resources/views/Article/create.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-17.653847">
@@ -822,10 +779,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AdminBundle/Controller/ArticleController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25965664">
-          <caret line="171" column="25" selection-start-line="171" selection-start-column="25" selection-end-line="171" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.47854078">
+          <caret line="177" column="0" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
           <folding>
             <element signature="e#42#75#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PublicBundle/Resources/views/IbnkhaldounMap/map.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.51724136">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding>
+            <element signature="e#90#111#0#HTML" expanded="true" />
+            <element signature="e#201#236#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>

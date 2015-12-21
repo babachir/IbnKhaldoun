@@ -2,7 +2,7 @@
 {% block body %}
 
     <div>
-        <input onchange="getArticle('article/getjsonarticles/'+'2010')" style="width: 775px;" type="range" value="1332" max="1406" min="1332" step="1">
+        <input id="years"  style="width: 775px;" type="range" value="1332" max="1406" min="1332" step="1">
 
     </div>
 
@@ -16,14 +16,28 @@
                 zoom: 4
             });
 
+            var marker = new google.maps.Marker({
+                position: {lat: 36.821464, lng:  10.174854},
+                map: map,
+                draggable: true,
+                title: "Drag me!"
+            })
+
+
+
+            $('#years').on('change', function() {
+
+                getArticle('article/getjsonarticles/'+this.value,marker);
+            });
+
+
+
 
         }
 
-
-
-
-
-        function getArticle(url) {
+        var firstclick = true;
+        var coords = {lat: 12, lng:21}
+        function getArticle(url,marker) {
 
             var data = null;
             var articleJson;
@@ -35,13 +49,26 @@
                         articleJson = JSON.parse(html);
                         articleJson.forEach(function (s) {
 
-                           console.log(s);
+
+                            if(firstclick) {
+                                coords = {lat: s.latitude, lng: s.longitude};
+                                marker.setPosition(coords);
+                            firstclick=false;
+
+                            }
+                            else
+                            {
+                                marker.setPosition(coords);
+                            }
 
                         })
 
 
                     });
         }
+
+
+
 
 
 
