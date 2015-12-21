@@ -208,8 +208,10 @@ class ArticleController extends Controller
 
     public function listAction()
     {
-        /*ne doit pas avoir de vue */
-        return $this->render('AdminBundle:Article:list.html.twig');
+        $Articlerepository = $this->getDoctrine()->getManager()->getRepository('EntityBundle:Article');
+        $list = $Articlerepository->findAll();
+
+        return $this->render('AdminBundle:Article:list.html.twig',array("list"=>$list));
     }
 
 

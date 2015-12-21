@@ -1,9 +1,14 @@
 {% extends '::public.html.twig' %}
 {% block body %}
 
+
     <div>
         <input id="years"  style="width: 775px;" type="range" value="1332" max="1406" min="1332" step="1">
 
+    </div>
+
+    <div>
+        Ann&eacute;e : <h2 style="display: inline-block; " id="year">1332</h2>
     </div>
 
     <div id="map" style="width: 700px;height: 400px;"></div>
@@ -28,6 +33,7 @@
             $('#years').on('change', function() {
 
                 getArticle('article/getjsonarticles/'+this.value,marker);
+                document.getElementById('year').innerHTML = this.value;
             });
 
 

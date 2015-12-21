@@ -1,4 +1,40 @@
-{% extends '::admin.html.twig'%}
+{% extends '::admin.html.twig' %}
 {% block body %}
-    hello list article from admin
+
+    <table style="margin-top: 36px;">
+    <tr>
+        <th>Titre</th>
+
+    </tr>
+
+
+
+
+    {% for article in list %}
+    <tr>
+
+        <td> {{article.titre}}</td>
+        <td><a href="{{ path('admin_update_article', {'id': article.id}) }}">
+                UPDATE
+            </a></td>
+        <td><a href="{{ path('admin_delete_article', {'id': article.id}) }}">
+                DELETE
+            </a></td>
+
+    </tr>
+    {% endfor %}
+
+
+    </table>
+
+    <style type="text/css">
+        table {
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: 1px solid black;
+        }
+    </style>
+
 {% endblock body %}

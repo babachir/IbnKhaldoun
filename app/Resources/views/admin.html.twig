@@ -4,9 +4,29 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('admin.css') }}"/>
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+
+    <div class="div-Nav">
+
+
+        <nav>
+            <ul>
+                <a href="admin/list"><li>article</li></a>
+                <a href="/com/list"><li>Commentaires</li></a>
+
+
+
+
+
+                <a href="/logout"><li style="float: right;" >Deconnexion</li></a>
+            </ul>
+        </nav>
+    </div>
+
+
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
