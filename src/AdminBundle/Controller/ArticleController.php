@@ -108,23 +108,39 @@ class ArticleController extends Controller
             ->add('titre',TextType::class)
             ->add('description',TextType::class)
             ->add('source',TextType::class)
-            ->add('dateDebut',DateTimeType::class)
-            ->add('dateFin',DateTimeType::class)
+            ->add('dateDebut',Type\DateType::class)
+            ->add('dateFin',Type\DateType::class)
             ->add('add',Type\SubmitType::class)
             ->getForm();
 
         $form_article->handleRequest($request);
         /*si le formulaire est valide */
 
-        if($form_article->isValid())
+
+
+        if($request->isMethod('POST'))
         {
+
+            $datedebut = new \Datetime();
+            $dateDebutFrom = $request->request->all()['form']['dateDebut'];
+
+            $datedebut->setDate($dateDebutFrom['year'],$dateDebutFrom['day'],$dateDebutFrom['month']);
+
+            $datefin = new \Datetime();
+            $dateFinFrom = $request->request->all()['form']['dateFin'];
+
+            $datefin->setDate($dateFinFrom['year'],$dateFinFrom['day'],$dateFinFrom['month']);
+
+
             /**/
+            $article->setDateDebut($datedebut);
+            $article->setDateFin($datefin);
             $article->setIsDelete('0');
             $em->persist($article);
             $em->flush();
             // return $thirect($s->redithis->generateUrl("admin_create_article",array('idImage' => $image->getId()),array('idLocalisation' => $idLocalisation)));
         }
-        return $this->render('AdminBundle:Article:create.html.twig',array( 'form'=> $form_article->createView()));
+        return $this->render('AdminBundle:Article:create.html.twig',array( 'form'=> $form_article->createView(),'years' => range(1331,1407) ));
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
