@@ -12,3 +12,10 @@ public_readarticle:
     defaults: { _controller: PublicBundle:Article:read}
     requirements:
         id: \d*
+public_getjsonarticle:
+    path:     /article/getjsonarticles/{year}
+    defaults:
+        _controller: PublicBundle:Article:getjsonarticles
+        format: json
+    requirements:
+        year:   \d{4}
