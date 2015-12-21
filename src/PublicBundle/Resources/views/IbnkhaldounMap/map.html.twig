@@ -59,12 +59,18 @@
                             if(firstclick) {
                                 coords = {lat: s.latitude, lng: s.longitude};
                                 marker.setPosition(coords);
+                                marker.addListener('click', function() {
+                                    window.open('article/read/'+s.id,'','');
+                                });
                             firstclick=false;
 
                             }
                             else
                             {
                                 marker.setPosition(coords);
+                                marker.addListener('click', function() {
+                                    window.open('article/read/'+s.id,'','');
+                                });
                             }
 
                         })
