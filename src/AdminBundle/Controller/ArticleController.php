@@ -173,7 +173,7 @@ class ArticleController extends Controller
             // return $thirect($s->redithis->generateUrl("admin_create_article",array('idImage' => $image->getId()),array('idLocalisation' => $idLocalisation)));
         }
        // $form_article->setData($articleOLD);
-        return $this->render('AdminBundle:Article:create.html.twig',array( 'form'=> $form_article->createView()));
+        return $this->render('AdminBundle:Article:create.html.twig',array( 'form'=> $form_article->createView(),'years' => range(1331,1407)));
     }
 
     public function deleteAction($id)
