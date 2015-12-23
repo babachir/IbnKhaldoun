@@ -152,25 +152,56 @@ class ArticleController extends Controller
 
         $arraydatedebut = array( 'day'=>$articleOLD->getDateDebut()->format('d'),'month'=>$articleOLD->getDateDebut()->format('m'),
             'year'=>$articleOLD->getDateDebut()->format('Y'));
-        var_dump($arraydatedebut);
+       // var_dump($arraydatedebut);
         $arraydatefin = array( 'day'=>$articleOLD->getDateFin()->format('d'),'month'=>$articleOLD->getDateDebut()->format('m'),
             'year'=>$articleOLD->getDateDebut()->format('Y'));
-        var_dump($arraydatefin);
+       // var_dump($arraydatefin);
 
 
+        $em = $this->getDoctrine()->getManager();
 
+        $build['article'] = $articleOLD;
 
-        $build['news_item'] = $articleOLD;
         $build['datedebut'] = $arraydatedebut;
         $build['datefin'] = $arraydatefin;
-        var_dump($build['datefin']);
-
+        $build['years'] = range(1331,1407);
+        $localisation =  $articleOLD->getLocalisation($articleOLD);
+        $image = $articleOLD->getImage($articleOLD);
 
         if (!$articleOLD) {
             throw $this->createNotFoundException('No news found by id ' . $id);
         }
 
-        $build['news_item'] = $articleOLD;
+
+        if($request->isMethod('POST'))
+        {
+
+            $datedebut = new \Datetime();
+            $dateDebutFrom = $request->request->all()['form']['dateDebut'];
+
+            $datedebut->setDate($dateDebutFrom['year'],$dateDebutFrom['day'],$dateDebutFrom['month']);
+
+            $datefin = new \Datetime();
+            $dateFinFrom = $request->request->all()['form']['dateFin'];
+
+            $datefin->setDate($dateFinFrom['year'],$dateFinFrom['day'],$dateFinFrom['month']);
+
+
+            /**/
+            $articleOLD = new Article();
+            $articleOLD->setDateDebut($datedebut);
+            $articleOLD->setDateFin($datefin);
+            $articleOLD->setIsDelete('0');
+            $articleOLD->setLocalisation($localisation);
+            $articleOLD->setImage($image);
+            $articleOLD->setTitre($request->request->all()['form']['titre']);
+            $articleOLD->setSource($request->request->all()['form']['source']);
+            $articleOLD->setDescription($request->request->all()['form']['description']);
+            $em->persist($articleOLD);
+            $em->flush();
+            return $this->redirect($this->generateUrl("admin_article_list"));
+        }
+
         return $this->render('AdminBundle:Article:update.html.twig', $build);
 
    }
