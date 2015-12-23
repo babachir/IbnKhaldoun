@@ -147,34 +147,33 @@ class ArticleController extends Controller
     public function updateAction($id ,Request $request)
     {
         $ArticleRepository = $this->getDoctrine()->getManager()->getRepository('EntityBundle:Article');
+
         $articleOLD = $ArticleRepository->find($id);
 
+        $arraydatedebut = array( 'day'=>$articleOLD->getDateDebut()->format('d'),'month'=>$articleOLD->getDateDebut()->format('m'),
+            'year'=>$articleOLD->getDateDebut()->format('Y'));
+        var_dump($arraydatedebut);
+        $arraydatefin = array( 'day'=>$articleOLD->getDateFin()->format('d'),'month'=>$articleOLD->getDateDebut()->format('m'),
+            'year'=>$articleOLD->getDateDebut()->format('Y'));
+        var_dump($arraydatefin);
 
-        $em = $this->getDoctrine()->getManager();
 
 
-        $form_article = $this->createFormBuilder($articleOLD)
-            ->add('titre',TextType::class)
-            ->add('description',TextType::class)
-            ->add('source',TextType::class)
-            ->add('dateDebut',DateTimeType::class)
-            ->add('dateFin',DateTimeType::class)
-            ->add('add',Type\SubmitType::class)
-            ->getForm();
 
-        $form_article->handleRequest($request);
-        /*si le formulaire est valide */
+        $build['news_item'] = $articleOLD;
+        $build['datedebut'] = $arraydatedebut;
+        $build['datefin'] = $arraydatefin;
+        var_dump($build['datefin']);
 
-        if($form_article->isValid())
-        {
 
-            $em->persist($articleOLD);
-            $em->flush();
-            // return $thirect($s->redithis->generateUrl("admin_create_article",array('idImage' => $image->getId()),array('idLocalisation' => $idLocalisation)));
+        if (!$articleOLD) {
+            throw $this->createNotFoundException('No news found by id ' . $id);
         }
-       // $form_article->setData($articleOLD);
-        return $this->render('AdminBundle:Article:update.html.twig',array( 'form'=> $form_article->createView(),'years' => range(1331,1407)));
-    }
+
+        $build['news_item'] = $articleOLD;
+        return $this->render('AdminBundle:Article:update.html.twig', $build);
+
+   }
 
     public function deleteAction($id)
     {
