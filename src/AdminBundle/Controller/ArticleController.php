@@ -138,7 +138,7 @@ class ArticleController extends Controller
             $article->setIsDelete('0');
             $em->persist($article);
             $em->flush();
-            // return $thirect($s->redithis->generateUrl("admin_create_article",array('idImage' => $image->getId()),array('idLocalisation' => $idLocalisation)));
+            return $this->redirect($this->generateUrl("admin_article_list"));
         }
         return $this->render('AdminBundle:Article:create.html.twig',array( 'form'=> $form_article->createView(),'years' => range(1331,1407) ));
     }
