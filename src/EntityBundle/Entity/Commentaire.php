@@ -12,11 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Commentaire
 {
-    /**
-     * @ORM\ManyToOne(targetEntity="Utilisateur")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $utilisateur;
+
 
 
     /**
@@ -37,17 +33,6 @@ class Commentaire
         return $this->Article;
     }
 
-    public function setUtilisateur(Utilisateur $utilisateur)
-    {
-        $this->utilisateur = $utilisateur;
-
-        return $this;
-    }
-
-    public function getUtilisateur()
-    {
-        return $this->Utilisateur;
-    }
 
     /**
      * @var int
@@ -73,6 +58,13 @@ class Commentaire
     private $isvalid;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="pseudo", type="string", length=255)
+     */
+    private $pseudo;
+
+    /**
      * Get id
      *
      * @return int
@@ -82,7 +74,7 @@ class Commentaire
         return $this->id;
     }
 
-    /**
+     /**
      * Set isvalide
      *
      * @param string $isvalide
@@ -104,6 +96,30 @@ class Commentaire
     public function getIsvalide()
     {
         return $this->isvalide;
+    }
+
+    /**
+     * Set pseudo
+     *
+     * @param string $pseudo
+     *
+     * @return Article
+     */
+    public function setPseudo($pseudo)
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    /**
+     * Get pseudo
+     *
+     * @return string
+     */
+    public function getPseudo()
+    {
+        return $this->pseudo;
     }
 
     /**
