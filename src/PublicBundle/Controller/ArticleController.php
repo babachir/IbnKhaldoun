@@ -2,6 +2,7 @@
 
 namespace PublicBundle\Controller;
 
+use EntityBundle\Entity\Article;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use \DateTime;
 use EntityBundle\Entity\Commentaire;
@@ -48,7 +49,7 @@ class ArticleController extends Controller
 
 
 
-        return $this->render('PublicBundle:Article:read.html.twig', array('article'  => $article ,'form'=> $form->createView()));
+        return $this->render('PublicBundle:Article:read.html.twig', array('article'  => $article,'urlImage'=> $article->getImage()->getUrlImg(),'form'=> $form->createView()));
     }
     public function getjsonarticlesAction($year)
     {
