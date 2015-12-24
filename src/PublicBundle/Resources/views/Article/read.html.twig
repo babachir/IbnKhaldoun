@@ -1,4 +1,9 @@
 {% extends '::public.html.twig'%}
 {% block body %}
-read! {{ id }}
+    {% for flash_message in app.session.flashbag.get('notice') %}
+        <div class="flash-notice">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+{{ form(form) }}
 {% endblock body %}
