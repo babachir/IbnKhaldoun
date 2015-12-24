@@ -50,5 +50,8 @@ admin_validate_com:
     requirements:
             id: \d*
 admin_article_list:
-    path:     /admin/list
+    path:     /admin/listarticle
     defaults: { _controller: AdminBundle:Article:list }
+admin_article_listcommentaire:
+    path:     /admin/listcommentaire
+    defaults: { _controller: AdminBundle:Article:listcommentaire }

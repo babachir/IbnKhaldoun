@@ -244,7 +244,13 @@ class ArticleController extends Controller
         return $this->render('AdminBundle:Article:list.html.twig',array("list"=>$list));
     }
 
+    public function listcommentaireAction()
+    {
+        $Commentairerepository = $this->getDoctrine()->getManager()->getRepository('EntityBundle:Commentaire');
+        $listcommentaire = $Commentairerepository->findAll();
 
+        return $this->render('AdminBundle:Article:listcommentaire.html.twig',array("listcommentaire"=>$listcommentaire));
+    }
 
     /*prend en enter un objet de type request afin de récupéré le POST du formulaire */
     public function testAction(Request $request)
