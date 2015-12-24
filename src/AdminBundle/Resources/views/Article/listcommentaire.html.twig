@@ -1,0 +1,43 @@
+{% extends '::admin.html.twig' %}
+{% block body %}
+
+    <table style="margin-top: 36px;">
+    <tr>
+        <th>Contenu</th>
+
+    </tr>
+
+
+
+
+    {% for commentaire in listcommentaire %}
+    <tr>
+
+        <td> {{commentaire.contenu}}</td>
+        <td> {{commentaire.contenu}}</td>
+        <td> {{commentaire.contenu}}</td>
+        <td><a href="{{ path('admin_update_article', {'id': commentaire.id}) }}">
+                Valider
+            </a></td>
+        <td><a href="{{ path('admin_delete_article', {'id': commentaire.id}) }}">
+                Supprimer
+            </a></td>
+
+    </tr>
+    {% endfor %}
+
+    </table>
+
+    <a href="{{ path('admin_create_localisation') }}" target="_self"> <input type="button" value="Bouton"> </a>
+
+    <style type="text/css">
+        table {
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: 1px solid black;
+        }
+    </style>
+
+{% endblock body %}
