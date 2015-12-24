@@ -23,7 +23,7 @@ class Article
      */
     private $localisation;
     /**
-     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="advert")
+     * @ORM\OneToMany(targetEntity="Commentaire", mappedBy="article")
      */
     private $commentaires;
 

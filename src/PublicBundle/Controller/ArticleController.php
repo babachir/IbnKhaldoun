@@ -49,7 +49,9 @@ class ArticleController extends Controller
 
 
 
-        return $this->render('PublicBundle:Article:read.html.twig', array('article'  => $article,'urlImage'=> $article->getImage()->getUrlImg(),'form'=> $form->createView()));
+
+        return $this->render('PublicBundle:Article:read.html.twig', array('article'  => $article,'urlImage'=> $article->getImage()->getUrlImg(),
+            'form'=> $form->createView(),'commentaires'=>$article->getCommentaires() ));
     }
     public function getjsonarticlesAction($year)
     {

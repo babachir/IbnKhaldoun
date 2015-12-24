@@ -18,6 +18,23 @@
 
         </div>
     </div>
+    <div class="commentaires">
+        <table class="table_commentaires">
+            {% for commentaire in commentaires %}
+                <tr>
+                    <td>
+
+                        <b>{{ commentaire.pseudo }}</b> : {{ commentaire.contenu }}
+                    </td>
+                </tr>
+
+
+            {% endfor %}
+
+
+        </table>
+
+    </div>
 
 
     {% for flash_message in app.session.flashbag.get('notice') %}
