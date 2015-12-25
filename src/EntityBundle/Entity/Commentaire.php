@@ -30,7 +30,7 @@ class Commentaire
 
     public function getArticle()
     {
-        return $this->Article;
+        return $this->article;
     }
 
 
@@ -95,7 +95,7 @@ class Commentaire
      */
     public function getIsvalide()
     {
-        return $this->isvalide;
+        return $this->isvalid;
     }
 
     /**

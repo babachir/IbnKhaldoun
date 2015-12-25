@@ -215,8 +215,11 @@ class ArticleController extends Controller
         $article->setIsDelete('1');
         $em->persist($article);
         $em->flush();
-        return $this->render('AdminBundle:Article:index.html.twig');
+        return $this->redirect($this->generateUrl('admin_article_list'));
     }
+
+
+
     public function readAction($id)
     {
 
@@ -239,7 +242,7 @@ class ArticleController extends Controller
     public function listAction()
     {
         $Articlerepository = $this->getDoctrine()->getManager()->getRepository('EntityBundle:Article');
-        $list = $Articlerepository->findAll();
+        $list = $Articlerepository->findBy(array('isDelete' => '0'));
 
         return $this->render('AdminBundle:Article:list.html.twig',array("list"=>$list));
     }
@@ -248,9 +251,38 @@ class ArticleController extends Controller
     {
         $Commentairerepository = $this->getDoctrine()->getManager()->getRepository('EntityBundle:Commentaire');
         $listcommentaire = $Commentairerepository->findAll();
+        $arraycommentaires = array();
+        foreach($listcommentaire as $commentaires)
+        {
 
-        return $this->render('AdminBundle:Article:listcommentaire.html.twig',array("listcommentaire"=>$listcommentaire));
+            if($commentaires->getIsvalide()==0)
+            $arraycommentaires [] = array( 'id'=> $commentaires->getId(),'contenu'=>$commentaires->getContenu(),
+            'article'=> $commentaires->getArticle()->getTitre(), 'idArticle' => $commentaires->getArticle()->getId() );
+
+
+        }
+
+        return $this->render('AdminBundle:Article:listcommentaire.html.twig',array("listcommentaire"=>$arraycommentaires));
     }
+
+    public function listcommentairevaliderAction()
+    {
+        $Commentairerepository = $this->getDoctrine()->getManager()->getRepository('EntityBundle:Commentaire');
+        $listcommentaire = $Commentairerepository->findAll();
+        $arraycommentaires = array();
+        foreach($listcommentaire as $commentaires)
+        {
+
+            if($commentaires->getIsvalide()==1)
+                $arraycommentaires [] = array( 'id'=> $commentaires->getId(),'contenu'=>$commentaires->getContenu(),
+                    'article'=> $commentaires->getArticle()->getTitre(), 'idArticle' => $commentaires->getArticle()->getId() );
+
+
+        }
+
+        return $this->render('AdminBundle:Article:listcommentairevalider.html.twig',array("listcommentaire"=>$arraycommentaires));
+    }
+
 
     /*prend en enter un objet de type request afin de récupéré le POST du formulaire */
     public function testAction(Request $request)

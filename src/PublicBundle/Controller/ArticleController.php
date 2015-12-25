@@ -47,11 +47,17 @@ class ArticleController extends Controller
             //return $this->render('PublicBundle:Article:read.html.twig', array('article'  => $article ,'form'=> $form->createView()));
         }
 
+        $arrayCommentaire = array();
+        $listCommentaire = $article->getCommentaires();
+        foreach($listCommentaire as $commentairel)
+        {
+            if($commentairel->getIsvalide()==1)
+            $arrayCommentaire[] = array('contenu'=>$commentairel->getContenu(),'pseudo'=>$commentairel->getPseudo());
 
-
+        }
 
         return $this->render('PublicBundle:Article:read.html.twig', array('article'  => $article,'urlImage'=> $article->getImage()->getUrlImg(),
-            'form'=> $form->createView(),'commentaires'=>$article->getCommentaires() ));
+            'form'=> $form->createView(),'commentaires'=>$arrayCommentaire ));
     }
     public function getjsonarticlesAction($year)
     {

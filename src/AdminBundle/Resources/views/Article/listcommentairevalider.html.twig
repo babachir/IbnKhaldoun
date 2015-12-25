@@ -16,9 +16,7 @@
 
         <td> {{commentaire.contenu}}</td>
         <td><a target="_blank" href="{{ path('public_readarticle', {'id': commentaire.idArticle}) }}"> {{commentaire.article}}</a></td>
-        <td><a href="{{ path('admin_validate_com', {'id': commentaire.id}) }}">
-                Valider
-            </a></td>
+
         <td><a href="{{ path('admin_delete_com', {'id': commentaire.id}) }}">
                 Supprimer
             </a></td>
@@ -28,7 +26,7 @@
 
     </table>
 
-    <a href="{{ path('admin_create_localisation') }}" target="_self"> <input type="button" value="Bouton"> </a>
+
 
     <style type="text/css">
         table {

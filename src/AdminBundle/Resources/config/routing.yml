@@ -55,3 +55,6 @@ admin_article_list:
 admin_article_listcommentaire:
     path:     /admin/listcommentaire
     defaults: { _controller: AdminBundle:Article:listcommentaire }
+admin_article_listcommentairevalider:
+    path:     /admin/listcommentairevalider
+    defaults: { _controller: AdminBundle:Article:listcommentairevalider }

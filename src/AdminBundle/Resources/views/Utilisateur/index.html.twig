@@ -1,4 +1,5 @@
 {% extends '::admin.html.twig'%}
 {% block body %}
-    hello user from admin
+    <a href="{{ path('admin_article_listcommentaire') }}"> list des commentaires non-valider</a><br/>
+    <a href="{{ path('admin_article_listcommentairevalider') }}"> list des commentaires valider</a>
 {% endblock body %}
