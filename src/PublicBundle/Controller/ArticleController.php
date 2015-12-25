@@ -16,6 +16,10 @@ class ArticleController extends Controller
     {
         return $this->render('PublicBundle:Article:index.html.twig');
     }
+    public function decouvrirAction()
+    {
+        return $this->render('PublicBundle:Article:decouvrir.html.twig');
+    }
 
     public function readAction($id  ,Request $request)
     {

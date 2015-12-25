@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new PublicBundle\PublicBundle(),
             new AdminBundle\AdminBundle(),
             new EntityBundle\EntityBundle(),
+            new IbnKhaldoun\UserBundle\IbnKhaldounUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

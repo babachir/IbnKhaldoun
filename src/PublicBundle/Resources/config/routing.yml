@@ -7,6 +7,9 @@ public_map:
 public_article:
     path:     /article
     defaults: { _controller: PublicBundle:Article:index}
+public_decouvrir:
+    path:     /decouvrir
+    defaults: { _controller: PublicBundle:Article:decouvrir}
 public_readarticle:
     path:     /article/read/{id}
     defaults: { _controller: PublicBundle:Article:read}
