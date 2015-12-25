@@ -15,24 +15,24 @@
     <script type="text/javascript">
 
         var map;
+        var markers = [];
+
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
                 center: {lat: 35.705522, lng: -0.641522},
                 zoom: 4
             });
 
-            var marker = new google.maps.Marker({
-                position: {lat: 36.821464, lng:  10.174854},
-                map: map,
-                title: "Drag me!"
-            })
+
 
 
 
             $('#years').on('change', function() {
 
-                getArticle('article/getjsonarticles/'+this.value,marker);
+                deleteMarkers();
+                getArticle('article/getjsonarticles/'+this.value,markers);
                 document.getElementById('year').innerHTML = this.value;
+
             });
 
 
@@ -40,9 +40,25 @@
 
         }
 
+        function deleteMarkers() {
+            clearMarkers();
+            markers = [];
+        }
+        function clearMarkers() {
+            setMapOnAll(null);
+        }
+
+        function setMapOnAll(map) {
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(map);
+            }
+        }
+
         var firstclick = true;
         var coords = {lat: 12, lng:21}
-        function getArticle(url,marker) {
+        function getArticle(url,markers) {
+
+
 
             var data = null;
             var articleJson;
@@ -51,26 +67,32 @@
                     function (html) {
 
 
+
+
                         articleJson = JSON.parse(html);
                         articleJson.forEach(function (s) {
 
 
-                            if(firstclick) {
-                                coords = {lat: s.latitude, lng: s.longitude};
-                                marker.setPosition(coords);
-                                marker.addListener('click', function() {
-                                    window.open('article/read/'+s.id,'','');
-                                });
-                            firstclick=false;
 
-                            }
-                            else
-                            {
-                                marker.setPosition(coords);
+
+                                coords = {lat: s.latitude, lng: s.longitude};
+                                var marker = new google.maps.Marker({
+                                    position: coords,
+                                    map: map,
+                                    title: "Drag me!"
+                                })
+
                                 marker.addListener('click', function() {
                                     window.open('article/read/'+s.id,'','');
                                 });
-                            }
+
+
+                                markers.push(marker);
+
+
+
+
+
 
                         })
 
