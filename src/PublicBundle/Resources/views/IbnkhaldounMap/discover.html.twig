@@ -1,0 +1,55 @@
+{% extends '::public.html.twig'%}
+{% block body %}
+    <!-- Header -->
+    <div id="header-wrapper">
+
+        <div id="header" class="container">
+
+            <div id="logo"><h1><a href="#">IBN-KHALDOUN</a></h1></div>
+            <nav id="nav">
+                <ul>
+                    <li class="current_page_item"><a href="{{ path('public_homepage') }}">accueil</a></li>
+                    <li><a href="{{ path('public_discover') }}">Découvrir</a></li>
+                    <li><a href="{{ path('public_map') }}">Google Maps</a></li>
+                    <li><a href="{{ path('public_contact') }}">Equipe</a></li>
+                </ul>
+            </nav>
+
+        </div>
+
+        <div id="page">
+            <div class="container">
+                <div class="row">
+
+                    <div id="content" class="8u skel-cell-important">
+                        <article>
+                            <header>
+                                <h2 class="main-title">Ibn Khaldoun</h2>
+                            </header>
+                            <a href="#" class="image-style1"><img src="{{ asset('images/ibn.jpg') }}" alt=""></a>
+                            <p>La connaissance de la vie d'Ibn Khaldoun est nécessaire pour comprendre intelligemment son oeuvre, car il a été mêlé de très près tant à la vie militaire, qu'à la vie politique de son époque.</p>
+                            <p>	Né à Tunis en 1332, mort au Caire en 1406, historien et philosophe arabe, il a laissé une immense chronique générale, précédée de Prolégomènes où il expose sa philosophie de l’histoire. Voilà ce que dit le dictionnaire Larousse de cet illustre auteur  "C’est l’une des grandes personnalités de tous les temps", soutient F. Rosenthal "C’est une gloire du Maghreb", ajoute Ibn-El-Khatib. </p>
+
+                            <p>Ibn Khaldoun un historien de premier plan auquel on doit la Muqaddima (traduite en Prolégomènes et qui est en fait son Introduction à l'histoire universelle et à la sociologie moderne) et Le Livre des exemples ou Livre des considérations sur l'histoire des Arabes, des Persans et des Berbères. Dans ces deux ouvrages résolument modernes dans leur méthode, Ibn Khaldoun insiste dès le début sur l'importance des sources, de leur authenticité et de leur vérification à l'aune de critères purement rationnels. Georges Marçais affirme que « l'œuvre d'Ibn Khaldoun est un des ouvrages les plus substantiels et les plus intéressants qu'ait produits l'esprit humain ».</p>
+                        </article>
+                    </div>
+                    <div id="sidebar" class="4u">
+   
+                        <div class="row">
+                            <section id="box1" class="6u">
+
+
+
+
+                            </section>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock body %}

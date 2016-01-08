@@ -4,9 +4,15 @@ public_homepage:
 public_map:
     path:     /parcours
     defaults: { _controller: PublicBundle:IbnkhaldounMap:map}
+public_contact:
+    path:     /contacts
+    defaults: { _controller: PublicBundle:IbnkhaldounMap:contacts}
 public_article:
     path:     /article
     defaults: { _controller: PublicBundle:Article:index}
+public_discover:
+    path:     /discover
+    defaults: { _controller: PublicBundle:IbnkhaldounMap:discover}
 public_decouvrir:
     path:     /decouvrir
     defaults: { _controller: PublicBundle:Article:decouvrir}

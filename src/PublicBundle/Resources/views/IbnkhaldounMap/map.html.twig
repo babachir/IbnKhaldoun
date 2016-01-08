@@ -1,17 +1,52 @@
 {% extends '::public.html.twig' %}
 {% block body %}
 
+    <div id="header-wrapper">
 
-    <div>
-        <input id="years"  style="width: 775px;" type="range" value="1332" max="1406" min="1332" step="1">
+        <div id="header" class="container">
+
+            <div id="logo"><h1><a href="#">Ibn-KHALDOUN</a></h1></div>
+            <nav id="nav">
+                <ul>
+                    <li class="current_page_item"><a href="{{ path('public_homepage') }}">accueil</a></li>
+                    <li><a href="{{ path('public_discover') }}">Découvrir</a></li>
+                    <li><a href="{{ path('public_map') }}">Google Maps</a></li>
+                    <li><a href="{{ path('public_contact') }}">Equipe</a></li>
+                </ul>
+            </nav>
+
+        </div>
 
     </div>
 
-    <div>
-        Ann&eacute;e : <h2 style="display: inline-block; " id="year">1332</h2>
+    <div id="page">
+        <div class="container">
+            <div class="row">
+
+                <div id="content" class="12u skel-cell-important">
+                    <article>
+                        <header>
+                            <h2 class="main-title">Découvrir le parcours d'Ibn Khaldoun </h2>
+                        </header>
+                        <div>
+                            <input id="years"  style="width: 100%;" type="range" value="1332" max="1406" min="1332" step="1">
+
+                        </div>
+
+                        <div>
+                            Année : <h2 style="display: inline-block; " id="year">1332</h2>
+                        </div>
+
+                        <div id="map" style="width: 100%;height: 700px;"></div>
+
+
+                    </article>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div id="map" style="width: 700px;height: 400px;"></div>
+
     <script type="text/javascript">
 
         var map;

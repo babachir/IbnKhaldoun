@@ -1,4 +1,37 @@
 {% extends '::public.html.twig'%}
 {% block body %}
-Hello World!
+    <!-- Header -->
+    <div id="header-wrapper">
+
+        <div id="header" class="container">
+
+            <div id="logo"><h1><a href="#">IBN-KHALDOUN</a></h1></div>
+            <nav id="nav">
+                <ul>
+                    <li class="current_page_item"><a href="{{ path('public_homepage') }}">accueil</a></li>
+                    <li><a href="{{ path('public_discover') }}">Découvrir</a></li>
+                    <li><a href="{{ path('public_map') }}">Google Maps</a></li>
+                    <li><a href="{{ path('public_contact') }}">Equipe</a></li>
+                </ul>
+            </nav>
+
+        </div>
+
+        <div id="banner">
+            <div class="container">
+                <div class="row">
+                    <section class="12u">
+                        <header>
+                            <h2>Un Premier Pas , Pour découvrir nos racines</h2>
+                            <span class="byline">POUR QUE NOS AILES SACHENT VOLER</span>
+                            <span class="byline">IBN-KHALDOUN</span>
+
+                        </header>
+                        <a href="{{ path('public_map') }}" class="button button-alt">Découvrir</a>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+    </div>
 {% endblock body %}
