@@ -21,4 +21,9 @@ class IbnkhaldounMapController extends Controller
         return $this->render('PublicBundle:IbnkhaldounMap:discover.html.twig');
 
     }
+    public function contactsAction()
+    {
+        return $this->render('PublicBundle:IbnkhaldounMap:contacts.html.twig');
+
+    }
 }

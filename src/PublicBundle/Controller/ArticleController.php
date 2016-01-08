@@ -45,7 +45,7 @@ class ArticleController extends Controller
             $em->flush();
             $this->addFlash(
                 'notice',
-                'Commentaire en attente de validation par l\'Administratue!'
+                'Commentaire en attente de validation par l\'Administrateur!'
             );
             return $this->redirect($this->generateUrl("public_readarticle",array('id' => $article->getId())));
             //return $this->render('PublicBundle:Article:read.html.twig', array('article'  => $article ,'form'=> $form->createView()));

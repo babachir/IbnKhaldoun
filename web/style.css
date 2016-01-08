@@ -21,7 +21,7 @@ body
 	border-radius: 150px;
 	-webkit-border-radius: 150px;
 	-moz-border-radius: 150px;
-	background: url(../images/equipe1.jpg) no-repeat center;
+	background: url(images/equipe1.jpg) no-repeat center;
 	margin-top: -5em;
 	margin-left: 11em;
 	box-shadow: 1px 1px 12px #555;
@@ -34,7 +34,7 @@ body
 	border-radius: 150px;
 	-webkit-border-radius: 150px;
 	-moz-border-radius: 150px;
-	background: url(../images/equipe3.jpg) no-repeat center;
+	background: url(images/equipe3.jpg) no-repeat center;
 margin-left: 41em;
 	margin-top: -22.5em;
 	box-shadow: 1px 1px 12px #555;
@@ -47,7 +47,7 @@ margin-left: 41em;
 	border-radius: 150px;
 	-webkit-border-radius: 150px;
 	-moz-border-radius: 150px;
-	background: url(../images/del.jpg) no-repeat center;
+	background: url(images/del.jpg) no-repeat center;
 	 margin-top: -22em;
 	margin-left: 70em;
 	box-shadow: 1px 1px 12px #555;

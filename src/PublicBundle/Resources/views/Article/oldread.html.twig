@@ -1,0 +1,51 @@
+{% extends '::public.html.twig' %}
+{% block body %}
+
+    <div class="article_image">
+
+        <img src="{{ urlImage }}" alt="Smiley face" height="500" width="500">
+    </div>
+    <div class="article">
+        <h3 class="titre_article">{{ article.titre }}</h3>
+
+        <div class="description"><p>{{ article.description }}</p></div>
+        <div class="info">
+            <ul>
+                <li> Date : {{ article.dateDebut|date('d/m/Y') }} </li>
+                <li> Source :{{ article.source }}</li>
+            </ul>
+
+
+        </div>
+    </div>
+    <div class="commentaires">
+        <table class="table_commentaires">
+            {% for commentaire in commentaires %}
+                <tr>
+                    <td>
+
+                        <b>{{ commentaire.pseudo }}</b> : {{ commentaire.contenu }}
+                    </td>
+                </tr>
+
+
+            {% endfor %}
+
+
+        </table>
+
+    </div>
+
+
+    {% for flash_message in app.session.flashbag.get('notice') %}
+
+
+
+
+
+        <div class="flash-notice">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+    {{ form(form) }}
+{% endblock body %}

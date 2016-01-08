@@ -13,9 +13,6 @@ public_article:
 public_discover:
     path:     /discover
     defaults: { _controller: PublicBundle:IbnkhaldounMap:discover}
-public_decouvrir:
-    path:     /decouvrir
-    defaults: { _controller: PublicBundle:Article:decouvrir}
 public_readarticle:
     path:     /article/read/{id}
     defaults: { _controller: PublicBundle:Article:read}
