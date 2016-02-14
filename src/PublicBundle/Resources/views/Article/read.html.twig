@@ -8,34 +8,32 @@
                 <div id="content" class="8u skel-cell-important">
                     <article>
                         <header>
-                            <h2 class="main-title">{{ article.titre }}</h2>
+                            <h2 class="main-article">{{ article.titre }}</h2>
                         </header>
-                        <a href="#" class="image-style1"><img src="{{ urlImage }}" alt=""></a>
-                        <p>
+                        <a href="#" class="image-style1" style="width: 700px;"><img src="{{ urlImage }}" alt=""></a>
+                        <p style="    margin: 30px 13px;">
                             {{ article.description }}
 
                         </p>
-                        <p>Date : {{ article.dateDebut|date('d/m/Y') }}</p>
-                        <p>Source :{{ article.source }}</p>
+                        <p style="text-align: right">Date : {{ article.dateDebut|date('d/m/Y') }}</p>
+                        <p style="text-align: right">Source :{{ article.source }}</p>
                     </article>
                 </div>
                 <div id="sidebar" class="4u">
                     <div class="commentaires">
                         <h2>Commentaires</h2>
-                        <table class="table_commentaires">
+                        <div>
                             {% for commentaire in commentaires %}
-                                <tr>
-                                    <td>
+                                <div class="commentaire">
 
                                         <b>{{ commentaire.pseudo }}</b> : {{ commentaire.contenu }}
-                                    </td>
-                                </tr>
-
+                                        <p>{{ commentaire.date|date('H:m d/m/Y') }} </p>
+                                </div>
 
                             {% endfor %}
 
 
-                        </table>
+                        </div>
 
                     </div>
                     <h2>Laisser un commentaire</h2>

@@ -65,6 +65,13 @@ class Commentaire
     private $pseudo;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime")
+     */
+    private $date;
+
+    /**
      * Get id
      *
      * @return int
@@ -145,5 +152,29 @@ class Commentaire
     {
         return $this->contenu;
     }
+    /**
+     * Set dateDebut
+     *
+     * @param \DateTime $date
+     *
+     * @return Commentaire
+     */
+    public function setDate($date)
+    {
+        $this->date= $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
 }
 

@@ -133,5 +133,23 @@ body
 
 
 
+.main-article
+{
+    margin-top: 130px;
+}
 
+.commentaire
+{
+    min-height: 50px;
+    padding: 12px;
+    width: 560px;
+    border: 1px #D6D6D6 solid;
+    border-radius: 5px;
+    margin: 20px 3px;
+}
 
+.commentaire p
+{
+    text-align: right;
+    font-size: 10px;
+}

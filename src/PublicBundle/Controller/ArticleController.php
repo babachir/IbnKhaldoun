@@ -41,6 +41,7 @@ class ArticleController extends Controller
             /**/
             $commentaire->setIsvalide('0');
             $commentaire->setArticle($article);
+            $commentaire->setDate(new DateTime());
             $em->persist($commentaire);
             $em->flush();
             $this->addFlash(
@@ -56,7 +57,7 @@ class ArticleController extends Controller
         foreach($listCommentaire as $commentairel)
         {
             if($commentairel->getIsvalide()==1)
-            $arrayCommentaire[] = array('contenu'=>$commentairel->getContenu(),'pseudo'=>$commentairel->getPseudo());
+            $arrayCommentaire[] = array('contenu'=>$commentairel->getContenu(),'pseudo'=>$commentairel->getPseudo(),'date' => $commentaire->getDate());
 
         }
 
