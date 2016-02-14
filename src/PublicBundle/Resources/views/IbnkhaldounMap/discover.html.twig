@@ -8,10 +8,10 @@
             <div id="logo"><h1><a href="#">IBN-KHALDOUN</a></h1></div>
             <nav id="nav">
                 <ul>
-                    <li ><a href="{{ path('public_homepage') }}">accueil</a></li>
-                    <li class="current_page_item"><a href="{{ path('public_discover') }}">Découvrir</a></li>
-                    <li><a href="{{ path('public_map') }}">Google Maps</a></li>
-                    <li><a href="{{ path('public_contact') }}">Equipe</a></li>
+                    <a href="{{ path('public_homepage') }}"><li >Accueil</li></a>
+                    <a href="{{ path('public_discover') }}" ><li class="selected">Découvrir</li></a>
+                    <a href="{{ path('public_map') }}"><li>Google Maps</li></a>
+                    <a href="{{ path('public_contact') }}"><li >Contact</li></a>
                 </ul>
             </nav>
 
@@ -24,7 +24,7 @@
                     <div id="content" class="8u skel-cell-important">
                         <article>
                             <header>
-                                <h2 class="main-title">Ibn Khaldoun</h2>
+                                <h2 class="main-title">Présentation</h2>
                             </header>
                             <a href="#" class="image-style1"><img src="{{ asset('images/ibn.jpg') }}" alt=""></a>
                             <p>La connaissance de la vie d'Ibn Khaldoun est nécessaire pour comprendre intelligemment son oeuvre, car il a été mêlé de très près tant à la vie militaire, qu'à la vie politique de son époque.</p>

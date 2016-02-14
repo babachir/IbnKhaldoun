@@ -8,10 +8,10 @@
             <div id="logo"><h1><a href="#">IBN-KHALDOUN</a></h1></div>
             <nav id="nav">
                 <ul>
-                    <li ><a href="{{ path('public_homepage') }}">accueil</a></li>
-                    <li><a href="{{ path('public_discover') }}">Découvrir</a></li>
-                    <li><a href="{{ path('public_map') }}">Google Maps</a></li>
-                    <li class="current_page_item"><a href="{{ path('public_contact') }}">Equipe</a></li>
+                    <a href="{{ path('public_homepage') }}"><li >Accueil</li></a>
+                    <a href="{{ path('public_discover') }}"><li>Découvrir</li></a>
+                    <a href="{{ path('public_map') }}"><li>Google Maps</li></a>
+                    <a href="{{ path('public_contact') }}" ><li class="selected" >Contact</li></a>
                 </ul>
             </nav>
 

@@ -8,10 +8,10 @@
             <div id="logo"><h1><a href="#">IBN-KHALDOUN</a></h1></div>
             <nav id="nav">
                 <ul>
-                    <li class="current_page_item"><a href="{{ path('public_homepage') }}">accueil</a></li>
-                    <li><a href="{{ path('public_discover') }}">Découvrir</a></li>
-                    <li><a href="{{ path('public_map') }}">Google Maps</a></li>
-                    <li><a href="{{ path('public_contact') }}">Equipe</a></li>
+                    <a href="{{ path('public_homepage') }}" ><li class="selected" >Accueil</li></a>
+                    <a href="{{ path('public_discover') }}"><li>Découvrir</li></a>
+                    <a href="{{ path('public_map') }}"><li>Google Maps</li></a>
+                    <a href="{{ path('public_contact') }}"><li >Contact</li></a>
                 </ul>
             </nav>
 
@@ -20,14 +20,14 @@
         <div id="banner">
             <div class="container">
                 <div class="row">
-                    <section class="12u">
+                    <section class="index-section">
                         <header>
                             <h2>Un Premier Pas , Pour découvrir nos racines</h2>
                             <span class="byline">POUR QUE NOS AILES SACHENT VOLER</span>
                             <span class="byline">IBN-KHALDOUN</span>
 
                         </header>
-                        <a href="{{ path('public_map') }}" class="button button-alt">Découvrir</a>
+                        <a href="{{ path('public_map') }}" style="    margin-top: 28px;" class="bt-grey marginAuto">Découvrir</a>
                     </section>
                 </div>
             </div>
