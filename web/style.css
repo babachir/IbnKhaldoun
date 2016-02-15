@@ -6,7 +6,7 @@ body, html, div,p {
 
 html
 {
-    background:#F1F1F1 ;
+    background:#DADADA ;
 
 }
 
@@ -15,7 +15,7 @@ body
 {
     width: 990px;
     margin: -21px auto;
-    background-color: white;
+    background-color: #AFAFAF;
     min-height: 800px;
     padding: 20px;
     box-shadow: -1px 20px 23px #656565;
@@ -30,14 +30,13 @@ body
 
     font-size: 15px;
 
-    margin-top: -20px;
+    margin-top: -10px;
 
     padding: 21px;
 
-    background-color: #F1F1F1;
+    background-color: #868686;
 
-    height: 90px;
-
+    
     margin-bottom: -48px;
 
     font-family:     font-family: Thin;
@@ -60,7 +59,7 @@ body
 {
     height: 44px;
     margin: 0px -21px 0px -20px;
-    background: #F1F1F1;
+    background: #BEC1C0;
 }
 
 #nav ul
@@ -80,10 +79,52 @@ body
     width: 237px;
     text-align: center;
     line-height: 37px;
-    color: #696969;
+    color: #000000;
     font-weight: bold;
 
 }
+
+
+h2
+{
+    letter-spacing: -1px;
+    font-size: 2.00em;
+    font-family:Times new roman ;
+    
+}
+
+/* Banner */
+
+    #banner
+    {
+        overflow: hidden;
+        padding: 10em 0em;
+        text-align: center;
+        z-index: 1;
+        position: relative;
+    }
+
+    #banner header h2
+    {
+        text-transform: uppercase;
+        font-size: 2.3em;
+        font-family:Trebuchet MS ;
+        color: #000000;
+    }
+
+    #banner header .byline
+    {
+        padding: -2em 5em;
+        font-size: 1.50em;
+        font-size: 1.5em;
+        font-family:Trebuchet MS ;
+    }
+    
+    #banner .button
+    {
+        margin-top: 1em;
+    }
+
 
 .index-section
    {
@@ -113,8 +154,8 @@ body
     height: 36px;
     line-height: 36px;
     text-decoration: none;
-    background-color: #F1F1F1;
-    color: #716969;
+    background-color: #868686;
+    color: #000000;
     font-weight: bold;
 }
 
@@ -126,7 +167,7 @@ body
     line-height: 36px;
     text-decoration: none;
     background-color: white;
-    color: #716969;
+    color: #000000;
     font-weight: bold;
     border-bottom: 4px #e80048 solid;
 }
@@ -152,4 +193,11 @@ body
 {
     text-align: right;
     font-size: 10px;
+}
+
+p
+{
+    font-family:Times new roman ;
+    text-align: justify;
+    font-size: 1em;
 }
