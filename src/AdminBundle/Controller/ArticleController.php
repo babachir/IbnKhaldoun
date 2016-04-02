@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type;
 
@@ -106,7 +107,7 @@ class ArticleController extends Controller
         $article->setImage($image1);
         $form_article = $this->createFormBuilder($article)
             ->add('titre',TextType::class)
-            ->add('description',TextType::class)
+            ->add('description',TextareaType::class)
             ->add('source',TextType::class)
             ->add('dateDebut',Type\DateType::class)
             ->add('dateFin',Type\DateType::class)
@@ -189,6 +190,7 @@ class ArticleController extends Controller
 
             /**/
             $articleOLD = new Article();
+            $articleOLD->setId($id);
             $articleOLD->setDateDebut($datedebut);
             $articleOLD->setDateFin($datefin);
             $articleOLD->setIsDelete('0');

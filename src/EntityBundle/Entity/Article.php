@@ -90,6 +90,18 @@ class Article
     }
 
     /**
+     * set Id
+     *@param string $titre
+     *
+     * @return Article
+     */
+    public function setId($id)
+    {
+         $this->id = $id;
+        return $this;
+    }
+
+    /**
      * Set titre
      *
      * @param string $titre

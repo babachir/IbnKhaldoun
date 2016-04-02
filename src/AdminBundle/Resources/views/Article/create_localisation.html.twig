@@ -1,4 +1,36 @@
 {% extends '::admin.html.twig'%}
 {% block body %}
+    <div style ="width: 300px; height:400px;float: left;">
     {{ form(form) }}
+    </div>
+    <div style ="width: 600px; height:400px;  float: right;"  id="map">
+
+    </div>
+<script type="text/javascript">
+
+    var map;
+    var markers = [];
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 35.705522, lng: -0.641522},
+            zoom: 5
+        });
+
+        google.maps.event.addListener(map, 'click', function(event) {
+
+            document.getElementById('form_longitude').value = event.latLng.lng();
+            document.getElementById('form_latitude').value = event.latLng.lat();
+
+
+
+        });
+
+    }
+</script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByhTAA8NFokUrvnHZvPQqS93bPKrFSOIw&callback=initMap">
+    </script>
+
 {% endblock body %}
+
