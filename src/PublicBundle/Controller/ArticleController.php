@@ -32,8 +32,8 @@ class ArticleController extends Controller
 
         $form = $this->createFormBuilder($commentaire)
                 ->add('pseudo',TextType::class)
-                ->add('contenu',TextType::class)
-                ->add('commenter', Type\SubmitType::class)
+                ->add('contenu',Type\TextareaType::class)
+                ->add('Valider', Type\SubmitType::class)
                 ->getForm();
         $form->handleRequest($request);
         if($form->isValid())
@@ -74,7 +74,9 @@ class ArticleController extends Controller
         $arrayArticle = array();
 
         foreach($datas as $data ) {
-            if ($data->getDateDebut()->format("Y")==$year) {
+
+            if ($data->getDateDebut()->format("Y")==$year && $data->getIsDelete()!="1" ) {
+
                 $arrayArticle[] = array('id' => $data->getId(), 'titre' => $data->getTitre(), 'DateDebut' => $data->getDateDebut()->format("Y"),
                     'DateFin' => $data->getDateFin()->format("Y"), 'place' => $data->getLocalisation()->getNom(),
                     'longitude' => $data->getLocalisation()->getLongitude(), 'latitude' => $data->getLocalisation()->getLatitude());
@@ -83,6 +85,7 @@ class ArticleController extends Controller
             }
 
         }
+
         $response = new \Symfony\Component\HttpFoundation\Response(json_encode($arrayArticle));
         return $response;
     }
@@ -96,7 +99,7 @@ class ArticleController extends Controller
         $arrayArticle = array();
 
         foreach($datas as $data ) {
-
+                if($data->getIsDelete()!="1")
                 $arrayArticle[] = array('id' => $data->getId(), 'titre' => $data->getTitre(), 'DateDebut' => $data->getDateDebut()->format("Y"),
                     'DateFin' => $data->getDateFin()->format("Y"), 'place' => $data->getLocalisation()->getNom(),
                     'longitude' => $data->getLocalisation()->getLongitude(), 'latitude' => $data->getLocalisation()->getLatitude());

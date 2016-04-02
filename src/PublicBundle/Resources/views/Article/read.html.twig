@@ -11,23 +11,27 @@
                             <h2 class="main-article">{{ article.titre }}</h2>
                         </header>
                         <a href="#" class="image-style1" style="width: 700px;"><img src="{{ urlImage }}" alt=""></a>
+
                         <p style="    margin: 30px 13px;">
                             {{ article.description }}
 
                         </p>
+
                         <p style="text-align: right">Date : {{ article.dateDebut|date('d/m/Y') }}</p>
+
                         <p style="text-align: right">Source :{{ article.source }}</p>
                     </article>
                 </div>
                 <div id="sidebar" class="4u">
                     <div class="commentaires">
                         <h2>Commentaires</h2>
+
                         <div>
                             {% for commentaire in commentaires %}
                                 <div class="commentaire">
 
-                                        <b>{{ commentaire.pseudo }}</b> : {{ commentaire.contenu }}
-                                        <p>{{ commentaire.date|date('H:m d/m/Y') }} </p>
+                                    <b>{{ commentaire.pseudo }}</b> : {{ commentaire.contenu }}
+                                    <p>{{ commentaire.date|date('H:m d/m/Y') }} </p>
                                 </div>
 
                             {% endfor %}
@@ -37,6 +41,7 @@
 
                     </div>
                     <h2>Laisser un commentaire</h2>
+
                     <div class="row">
                         <section id="box1" class="6u">
                             {% for flash_message in app.session.flashbag.get('notice') %}
@@ -51,7 +56,23 @@
                             {% endfor %}
 
 
-                        {{ form(form) }}
+                            <form name="form" method="post">
+                                <div id="form">
+                                    <div><label for="form_pseudo" class="required">Pseudo</label><input type="text"
+                                                                                                        id="form_pseudo"
+                                                                                                        name="form[pseudo]"
+                                                                                                        required="required">
+                                    </div>
+                                    <div><label for="form_contenu" class="required">Commentaires : </label><br/>
+                                        <textarea rows="4" cols="30"
+                                                  id="form_contenu" name="form[contenu]" required="required"></textarea>
+                                    </div>
+                                    <div>
+                                        <button type="submit" id="form_Valider" name="form[Valider]">Valider</button>
+                                    </div>
+                                    <input type="hidden" id="form__token" name="form[_token]"
+                                           value="2XIHIWe96M9Wuk2ZSEusmFXHf9L8Vs4PTPT4nt9PmrQ"></div>
+                            </form>
 
 
                         </section>

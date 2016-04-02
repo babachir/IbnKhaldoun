@@ -199,6 +199,8 @@ class ArticleController extends Controller
             $articleOLD->setTitre($request->request->all()['form']['titre']);
             $articleOLD->setSource($request->request->all()['form']['source']);
             $articleOLD->setDescription($request->request->all()['form']['description']);
+
+
             $em->persist($articleOLD);
             $em->flush();
             return $this->redirect($this->generateUrl("admin_article_list"));
