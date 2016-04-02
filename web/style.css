@@ -201,3 +201,10 @@ p
     text-align: justify;
     font-size: 1em;
 }
+
+#bt_map
+{
+    width: 191px;
+    height: 38px;
+    float: right;
+}

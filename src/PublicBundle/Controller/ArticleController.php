@@ -86,6 +86,28 @@ class ArticleController extends Controller
         $response = new \Symfony\Component\HttpFoundation\Response(json_encode($arrayArticle));
         return $response;
     }
+    public function getAlljsonarticlesAction()
+    {
+
+        $articleRepository = $this->getDoctrine()->getManager()->getRepository('EntityBundle:Article');
+
+
+        $datas=$articleRepository->findAll();
+        $arrayArticle = array();
+
+        foreach($datas as $data ) {
+
+                $arrayArticle[] = array('id' => $data->getId(), 'titre' => $data->getTitre(), 'DateDebut' => $data->getDateDebut()->format("Y"),
+                    'DateFin' => $data->getDateFin()->format("Y"), 'place' => $data->getLocalisation()->getNom(),
+                    'longitude' => $data->getLocalisation()->getLongitude(), 'latitude' => $data->getLocalisation()->getLatitude());
+
+
+
+
+        }
+        $response = new \Symfony\Component\HttpFoundation\Response(json_encode($arrayArticle));
+        return $response;
+    }
 
 
 }

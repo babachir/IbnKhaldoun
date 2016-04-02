@@ -4,6 +4,9 @@ public_homepage:
 public_map:
     path:     /parcours
     defaults: { _controller: PublicBundle:IbnkhaldounMap:map}
+public_allmap:
+    path:     /Allmap
+    defaults: { _controller: PublicBundle:IbnkhaldounMap:Allmap}
 public_contact:
     path:     /contacts
     defaults: { _controller: PublicBundle:IbnkhaldounMap:contacts}
@@ -25,3 +28,8 @@ public_getjsonarticle:
         format: json
     requirements:
         year:   \d{4}
+public_getAlljsonarticle:
+    path:     /article/getAlljsonarticles
+    defaults:
+        _controller: PublicBundle:Article:getAlljsonarticles
+        format: json

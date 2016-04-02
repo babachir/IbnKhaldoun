@@ -16,6 +16,11 @@ class IbnkhaldounMapController extends Controller
         return $this->render('PublicBundle:IbnkhaldounMap:map.html.twig');
 
     }
+    public function AllMapAction()
+    {
+        return $this->render('PublicBundle:IbnkhaldounMap:Allmap.html.twig');
+
+    }
     public function discoverAction()
     {
         return $this->render('PublicBundle:IbnkhaldounMap:discover.html.twig');
