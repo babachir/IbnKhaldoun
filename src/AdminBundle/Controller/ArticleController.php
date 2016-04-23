@@ -16,13 +16,23 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type;
+use Symfony\Component\HttpFoundation\Session\Session;
+
+use Symfony\Component\HttpFoundation\Response;
 
 
 
 class ArticleController extends Controller
 {
-    public function indexAction()
+
+    public function indexAction(Request $request)
     {
+        $session = $request->getSession();
+
+        if(!$session->get('AdminAuth'))
+        {
+            return $this->redirect($this->generateUrl("login"));
+        }
 
         $news = $this->getDoctrine()
             ->getRepository('EntityBundle:Article')
@@ -38,6 +48,15 @@ class ArticleController extends Controller
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function create_localisationAction(Request $request)
     {
+
+        $session = $request->getSession();
+
+        if(!$session->get('AdminAuth'))
+        {
+            return $this->redirect($this->generateUrl("login"));
+        }
+
+
         /*on charge le manager a fin de faire des entrés dans la base de données*/
         $em = $this->getDoctrine()->getManager();
         $localisation = new Localisation();
@@ -65,6 +84,14 @@ class ArticleController extends Controller
 
     public function create_imgAction($idLocalisation,Request $request)
     {
+        $session = $request->getSession();
+
+        if(!$session->get('AdminAuth'))
+        {
+            return $this->redirect($this->generateUrl("login"));
+        }
+
+
         /*on charge le manager a fin de faire des entrés dans la base de données*/
         $em = $this->getDoctrine()->getManager();
         $image = new Image();
@@ -91,6 +118,14 @@ class ArticleController extends Controller
 
     public function createAction($idImage,$idLocalisation,Request $request)
     {
+        $session = $request->getSession();
+
+        if(!$session->get('AdminAuth'))
+        {
+            return $this->redirect($this->generateUrl("login"));
+        }
+
+
         /*pour charcher le repository afin de lire la base de données*/
         $Localisationrepository = $this->getDoctrine()->getManager()->getRepository('EntityBundle:Localisation');
         /*on récupére la localisation 1 (si elle existe pas faut pas oublier de la crée)*/
@@ -147,6 +182,13 @@ class ArticleController extends Controller
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public function updateAction($id ,Request $request)
     {
+        $session = $request->getSession();
+
+        if(!$session->get('AdminAuth'))
+        {
+            return $this->redirect($this->generateUrl("login"));
+        }
+
         $ArticleRepository = $this->getDoctrine()->getManager()->getRepository('EntityBundle:Article');
 
         $articleOLD = $ArticleRepository->find($id);
@@ -210,8 +252,16 @@ class ArticleController extends Controller
 
    }
 
-    public function deleteAction($id)
+    public function deleteAction($id,Request $request)
     {
+
+        $session = $request->getSession();
+
+        if(!$session->get('AdminAuth'))
+        {
+            return $this->redirect($this->generateUrl("login"));
+        }
+
         $Articlerepository = $this->getDoctrine()->getManager()->getRepository('EntityBundle:Article');
         /*on récupére la localisation 1 (si elle existe pas faut pas oublier de la crée)*/
         $article = $Articlerepository->find($id);
@@ -224,8 +274,16 @@ class ArticleController extends Controller
 
 
 
-    public function readAction($id)
+    public function readAction($id,Request $request)
     {
+        $session = $request->getSession();
+
+        if(!$session->get('AdminAuth'))
+        {
+            return $this->redirect($this->generateUrl("login"));
+        }
+
+
 
         $news = $this->getDoctrine()
             ->getRepository('EntityBundle:Article')
@@ -243,16 +301,31 @@ class ArticleController extends Controller
 
 
 
-    public function listAction()
+    public function listAction(Request $request)
     {
+        $session = $request->getSession();
+
+        if(!$session->get('AdminAuth'))
+        {
+            return $this->redirect($this->generateUrl("login"));
+        }
+
         $Articlerepository = $this->getDoctrine()->getManager()->getRepository('EntityBundle:Article');
         $list = $Articlerepository->findBy(array('isDelete' => '0'));
 
         return $this->render('AdminBundle:Article:list.html.twig',array("list"=>$list));
     }
 
-    public function listcommentaireAction()
+    public function listcommentaireAction(Request $request)
     {
+
+        $session = $request->getSession();
+
+        if(!$session->get('AdminAuth'))
+        {
+            return $this->redirect($this->generateUrl("login"));
+        }
+
         $Commentairerepository = $this->getDoctrine()->getManager()->getRepository('EntityBundle:Commentaire');
         $listcommentaire = $Commentairerepository->findAll();
         $arraycommentaires = array();
@@ -269,8 +342,17 @@ class ArticleController extends Controller
         return $this->render('AdminBundle:Article:listcommentaire.html.twig',array("listcommentaire"=>$arraycommentaires));
     }
 
-    public function listcommentairevaliderAction()
+    public function listcommentairevaliderAction(Request $request)
     {
+
+        $session = $request->getSession();
+
+        if(!$session->get('AdminAuth'))
+        {
+            return $this->redirect($this->generateUrl("login"));
+        }
+
+
         $Commentairerepository = $this->getDoctrine()->getManager()->getRepository('EntityBundle:Commentaire');
         $listcommentaire = $Commentairerepository->findAll();
         $arraycommentaires = array();

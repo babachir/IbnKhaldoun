@@ -6,19 +6,54 @@ namespace IbnKhaldoun\UserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType ;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType ;
+use EntityBundle\Entity\Administrateur;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Response;
 
 class SecurityController extends Controller
 {
     public function loginAction(Request $request)
     {
-        // Si le visiteur est déjà identifié, on le redirige vers l'accueil
 
 
-        // Le service authentication_utils permet de récupérer le nom d'utilisateur
-        // et l'erreur dans le cas où le formulaire a déjà été soumis mais était invalide
-        // (mauvais mot de passe par exemple)
-        $authenticationUtils = $this->get('security.authentication_utils');
 
-        return $this->render('IbnKhaldounUserBundle:Security:login.html.twig');
+        $session = $request->getSession();
+        $session->set('AdminAuth', false);
+
+
+        $em = $this->getDoctrine()->getManager();
+        $Admin = new Administrateur();
+        $form_login = $this->createFormBuilder($Admin)
+            ->add('Email',TextType::class)
+            ->add('Password',PasswordType::class)
+            ->add('add',SubmitType::class)
+            ->getForm();
+        $form_login->handleRequest($request);
+
+        if($form_login->isValid())
+        {
+            $Adminrepository = $this->getDoctrine()->getManager()->getRepository('EntityBundle:Administrateur');
+            $AllAdmin = $Adminrepository->findAll();
+            foreach($AllAdmin as $Item)
+            {
+                if(($Item->getEmail()==$Admin->getEmail()) && ($Item->getPassword()==$Admin->getPassword() ))
+                {
+
+                    $session->set('AdminAuth', true);
+                    return $this->redirect($this->generateUrl("admin_homepage"));
+
+
+                }
+
+            }
+            return $this->redirect($this->generateUrl("login"));
+
+
+        }
+
+        return $this->render('IbnKhaldounUserBundle:Security:login.html.twig',array( 'form'=> $form_login->createView()));
     }
 }

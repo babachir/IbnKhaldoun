@@ -6,34 +6,7 @@
 
     {# S'il y a une erreur, on l'affiche dans un joli cadre #}
 
-
-    {# Le formulaire, avec URL de soumission vers la route « login_check » comme on l'a vu #}
-    <form action="{{ path('login_check') }}" method="post" id="login-form">
-        <table>
-            <tr>
-                <td>
-                    <label for="username">Login :</label>
-                </td>
-                <td>
-                    <input type="text" id="username" name="_username"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="password">Mot de passe :</label>
-                </td>
-                <td>
-                    <input type="password" id="password" name="_password"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <td>
-                    <input style="float:right" type="submit" value="Connexion"/>
-                </td>
-            </tr>
-        </table>
-    </form>
-
+<div id="login-form" >
+{{ form(form) }}
+</div>
 {% endblock %}
