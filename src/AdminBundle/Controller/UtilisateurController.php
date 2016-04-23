@@ -2,11 +2,23 @@
 
 namespace AdminBundle\Controller;
 
+use EntityBundle\Entity;
+use EntityBundle\Entity\Administrateur;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use EntityBundle\Entity\Commentaire;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Form\Form;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\AbstractType;
+use Doctrine\ORM\EntityRepository;
+
 
 class UtilisateurController extends Controller
 {
@@ -70,4 +82,44 @@ class UtilisateurController extends Controller
         return $this->redirect($this->generateUrl("admin_article_listcommentaire"));
 
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public function create_adminAction(Request $request)
+    {
+
+        $session = $request->getSession();
+
+        if(!$session->get('AdminAuth'))
+        {
+            return $this->redirect($this->generateUrl("login"));
+        }
+
+
+        $em = $this->getDoctrine()->getManager();
+
+        $Admin = new Administrateur();
+
+        $form_admin = $this->createFormBuilder($Admin)
+            ->add('nom',TextType::class)
+            ->add('prenom',TextType::class)
+            ->add('email',TextType::class)
+            ->add('password',PasswordType::class)
+            ->add('add',SubmitType::class)
+            ->getForm();
+        $form_admin->handleRequest($request);
+
+        /*si le formulaire est valide */
+
+        if($form_admin->isValid())
+        {
+            /**/
+            $em->persist($Admin);
+            $em->flush();
+            return $this->redirect($this->generateUrl("admin_homepage"));
+        }
+
+        //$article->setLocalisation($localisation1);
+        return $this->render('AdminBundle:Utilisateur:create_admin.html.twig',array( 'form'=> $form_admin->createView()));
+    }
+
 }

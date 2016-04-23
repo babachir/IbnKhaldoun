@@ -21,6 +21,9 @@ admin_create_article:
 admin_create_localisation:
     path:     /admin/article/createlocalisation
     defaults: { _controller: AdminBundle:Article:create_localisation }
+admin_create_admin:
+    path:     /admin/article/createadmin
+    defaults: { _controller: AdminBundle:Utilisateur:create_admin }
 admin_create_img:
     path:     /admin/article/createimage/{idLocalisation}
     defaults: { _controller: AdminBundle:Article:create_img }
